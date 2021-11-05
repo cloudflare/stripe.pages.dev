@@ -1,4 +1,4 @@
 {
-  "entrypoint": "/functions",
+  "entryPoint": "/functions",
   "baseURL": "/api"
 }
