@@ -1,4 +1,4 @@
 {
-  "entryPoint": "/functions",
-  "baseURL": "/api"
+  "baseURL": "/api/checkout",
+  "entryPoint": "/build/index.mjs"
 }

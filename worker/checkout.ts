@@ -1,18 +1,23 @@
 import Stripe from 'stripe';
+import type { Handler } from './types';
+
+// Injected during `build` script
+declare const STRIPE_API_KEY: string;
 
 const stripe = new Stripe(STRIPE_API_KEY, {
 	// Cloudflare Workers use the Fetch API for their API requests.
-	httpClient: Stripe.createFetchHttpClient()
+	httpClient: Stripe.createFetchHttpClient(),
+	apiVersion: '2020-08-27',
 });
 
-function reply(message, status) {
+function reply(message: string, status: number): Response {
 	return new Response(message, { status });
 }
 
 /**
  * POST /api/checkout
  */
-export async function onRequestPost({ request }) {
+export const create: Handler = async function (request) {
 	// Accomodates preview deployments AND custom domains
 	// @example "https://<hash>.<branch>.<project>.pages.dev"
 	const { origin } = new URL(request.url);
@@ -51,7 +56,7 @@ export async function onRequestPost({ request }) {
 /**
  * GET /api/checkout?sessionid=XYZ
  */
-export async function onRequestGet({ request }) {
+export const lookup: Handler = async function (request) {
 	const { searchParams } = new URL(request.url);
 
 	const ident = searchParams.get('sessionid');
