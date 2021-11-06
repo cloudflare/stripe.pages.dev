@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "types": ["@cloudflare/workers-types"],
+    "lib": ["es2020"]
+  },
+  "include": [
+    "worker/**/*.ts"
+  ]
+}
