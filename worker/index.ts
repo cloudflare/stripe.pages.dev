@@ -3,10 +3,6 @@ import type { ModuleWorker } from './types';
 
 const worker: ModuleWorker = {
 	fetch(req, env, ctx) {
-		return new Response(
-			req.url
-		);
-
 		// POST /api/checkout
 		if (req.method === 'POST') {
 			return checkout.create(req, env, ctx);

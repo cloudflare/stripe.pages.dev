@@ -49,6 +49,7 @@ export const create: Handler = async function (request) {
 
 		return Response.redirect(session.url, 303);
 	} catch (err) {
+		return reply(err && (err as Error).message, 400);
 		return reply('Error creating session', 500);
 	}
 }
@@ -71,6 +72,7 @@ export const lookup: Handler = async function (request) {
 			}
 		});
 	} catch (err) {
+		return reply(err && (err as Error).message, 400);
 		return reply('Error retrieving Session JSON data', 500);
 	}
 }
